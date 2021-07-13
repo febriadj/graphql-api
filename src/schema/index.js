@@ -1,6 +1,11 @@
 const { GraphQLSchema, GraphQLObjectType } = require('graphql');
-const { getAllBooks } = require('./queries/getBook');
 const { addBook } = require('./mutations/addBook');
+const {
+  getAllBooks,
+  getBookByTitle,
+  getBookByCountry,
+  getBookByGenre,
+} = require('./queries/getBook');
 
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -12,7 +17,7 @@ const Mutation = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: () => ({
-    getAllBooks,
+    getAllBooks, getBookByTitle, getBookByCountry, getBookByGenre,
   }),
 });
 

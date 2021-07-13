@@ -1,3 +1,4 @@
-## GraphQL Server
+## GraphQL API
+Membangun API Service menggunakan GraphQL
 
-Membangun API Service dengan GraphQL
+Style Guide: [Airbnb](https://github.com/airbnb/javascript)

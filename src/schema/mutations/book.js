@@ -1,4 +1,10 @@
-const { GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql');
+const {
+  GraphQLString,
+  GraphQLNonNull,
+  GraphQLList,
+  GraphQLID,
+} = require('graphql');
+
 const BookType = require('../types/book');
 const Books = require('../../models/books');
 
@@ -18,5 +24,15 @@ exports.addBook = {
     });
 
     return book.save();
+  },
+};
+
+exports.deleteBook = {
+  type: BookType,
+  args: { id: { type: GraphQLID } },
+  resolve(parent, args) {
+    return Books.findOneAndDelete({ 
+      _id: args.id,
+    });
   },
 };

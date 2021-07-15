@@ -1,16 +1,16 @@
 const { GraphQLSchema, GraphQLObjectType } = require('graphql');
-const { addBook } = require('./mutations/addBook');
+const { addBook, deleteBook } = require('./mutations/book');
 const {
   getAllBooks,
   getBookByTitle,
   getBookByCountry,
   getBookByGenre,
-} = require('./queries/getBook');
+} = require('./queries/book');
 
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    addBook,
+    addBook, deleteBook,
   }),
 });
 

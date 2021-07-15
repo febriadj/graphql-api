@@ -31,8 +31,29 @@ exports.deleteBook = {
   type: BookType,
   args: { id: { type: GraphQLID } },
   resolve(parent, args) {
-    return Books.findOneAndDelete({ 
+    return Books.findOneAndDelete({
       _id: args.id,
     });
+  },
+};
+
+exports.updateBook = {
+  type: BookType,
+  args: {
+    id: { type: GraphQLID },
+    title: { type: GraphQLString },
+    genre: {
+      type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(GraphQLString))),
+    },
+    country: { type: GraphQLString },
+  },
+  resolve: async (parent, args) => {
+    const { title, genre, country } = args;
+
+    const book = await Books.findOneAndUpdate({
+      title, genre, country,
+    });
+
+    return book;
   },
 };
